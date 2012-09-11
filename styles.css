@@ -1,0 +1,38 @@
+body {
+    text-align: center;
+    margin: 2em 0 0 0;
+    vertical-align: middle;
+    font-family: "Hoefler Text", "Baskerville old face", Garamond, "Times New Roman", serif;
+    /*font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;*/
+    font-size: 1.25em;
+    background-color: #FAFAFA;
+}
+
+a:link {
+    text-decoration: none;
+    color: #78A1CC;
+}
+
+#content {
+    width: 600px;
+    text-align: justify;
+    margin: 0 auto;
+}
+
+#title {
+    text-align: center;
+    width: 600px;
+    margin: 0 auto;
+    /*font-family: Consolas, monaco, monospace;*/
+}
+
+div .codehilite {
+    width: 600px;
+    overflow: auto;
+    /*border: 1px solid;*/
+    padding-left: 10px;
+}
+
+blockquote {
+    font-style: italic;
+}
