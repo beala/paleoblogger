@@ -28,7 +28,7 @@ class TocGen(object):
         return post_list
 
     def _gen_link(self, post):
-        return '<a href="%s">%s</a> - %s' % (
+        return '%s<br><a href="%s">%s</a>' % (
+                post["date"].strftime("%m/%d/%Y"),
                 post["permalink"],
-                post["title"],
-                post["date"].strftime("%m/%d/%Y"))
+                post["title"])

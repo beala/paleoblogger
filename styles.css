@@ -2,35 +2,47 @@ body {
     text-align: center;
     margin: 2em 0 0 0;
     vertical-align: middle;
-    font-family: "Hoefler Text", "Baskerville old face", Garamond, "Times New Roman", serif;
-    /*font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;*/
-    font-size: 1.25em;
+    font-family: "Garamond", "Times New Roman", serif;
+    font-size: 1.45em;
     background-color: #FAFAFA;
 }
 
 a:link {
     text-decoration: none;
-    color: #78A1CC;
+    color: #0055AD;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #000000;
 }
 
 #content {
     width: 600px;
     text-align: justify;
     margin: 0 auto;
+    line-height:125%;
+}
+
+#toclinks {
+    width: 600px;
+    text-align: center;
+    margin: 0 auto;
+    line-height:125%;
 }
 
 #title {
     text-align: center;
     width: 600px;
     margin: 0 auto;
-    /*font-family: Consolas, monaco, monospace;*/
 }
 
 div .codehilite {
     width: 600px;
     overflow: auto;
-    /*border: 1px solid;*/
     padding-left: 10px;
+    line-height: 100%;
+    font-size: 0.9em;
 }
 
 blockquote {

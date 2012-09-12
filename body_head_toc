@@ -4,9 +4,10 @@
         <title>/usr/sbin/blog</title>
         <link rel="stylesheet" type="css" href="styles.css">
         <link rel="stylesheet" type="css" href="tango.css">
+        <meta charset="utf-8">
     </head>
     <body>
         <div id="title">
             <h1>/usr/sbin/blog</h1>
         </div>
-        <div id="content">
+        <div id="toclinks">

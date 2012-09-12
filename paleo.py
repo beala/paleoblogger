@@ -1,6 +1,7 @@
 import sys
 import subprocess
 import os
+import codecs
 import datetime
 
 import lamarkstage
@@ -23,7 +24,7 @@ stages = [
         ]
 
 def get_post_info(post_filename):
-    with open(post_filename) as post_file:
+    with codecs.open(post_filename, encoding='utf-8') as post_file:
         title = post_file.next().strip()
         author = post_file.next().strip()
         date = datetime.datetime.strptime(post_file.next().strip(), "%m-%d-%Y")
