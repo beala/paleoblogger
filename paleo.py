@@ -24,26 +24,31 @@ stages = [
         ]
 
 def get_post_info(post_filename):
+    post_info = {}
     with codecs.open(post_filename, encoding='utf-8') as post_file:
-        title = post_file.next().strip()
-        author = post_file.next().strip()
-        date = datetime.datetime.strptime(post_file.next().strip(), "%m-%d-%Y")
-        permalink = post_file.next().strip() + ".html"
+        whitespace_count=0
+        while True:
+            line = post_file.next().strip()
+            if line == "":
+                break
+            colon_pos = line.find(":")
+            if colon_pos == -1:
+                raise Exception("Invalid header line: " + line)
+            arg_name = line[:colon_pos]
+            if arg_name not in ["title", "author", "date", "permalink"]:
+                raise Exception("Unrecognized header argument: " + arg_name)
+            post_info[arg_name] = line[colon_pos+1:].strip()
+        post_info["date"] = datetime.datetime.strptime(post_info["date"], "%m-%d-%Y")
+        post_info["permalink"] += ".html"
         body = ""
         while True:
             try:
                 body += post_file.next()
             except StopIteration:
                 break
-        body = body.strip()
-    return {
-            'title': title,
-            'author':author,
-            'date':date,
-            'permalink':permalink,
-            'body':body,
-            'cur_res': body,
-            }
+        post_info["body"] = body.strip()
+        post_info["cur_res"] = body.strip()
+    return post_info
 
 # TODO: Process post file path so that a "/" is appended if needed.
 

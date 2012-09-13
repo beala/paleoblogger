@@ -1,4 +1,4 @@
-from lamark import *
+from lamark import lamark
 class LamarkStage(object):
     single_item = True
 
@@ -7,5 +7,5 @@ class LamarkStage(object):
 
     def process(self, post_list, post, post_num):
         body = post["cur_res"]
-        post["cur_res"] = lamark.lamark(body, self.output_dir)
+        post["cur_res"] = lamark(body, self.output_dir, post["permalink"], 1500)
         return post
