@@ -7,6 +7,8 @@ class MarkdownStage(object):
         pass
 
     def process(self, post_list, post, post_num):
-        post["cur_res"] = markdown.markdown(post["cur_res"], ['fenced_code', 'codehilite'])
+        post["cur_res"] = markdown.markdown(
+                post["cur_res"],
+                ['fenced_code', 'codehilite'])
         # That was easy :-)
         return post

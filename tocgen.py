@@ -1,6 +1,6 @@
 import datetime
 
-class TocGen(object):
+class TOCGen(object):
     single_item=False
 
     def __init__(self, args_dict):
@@ -17,9 +17,7 @@ class TocGen(object):
         with open("body_footer") as footer_file:
             body += footer_file.read()
         post_list.append({
-            'title':"/usr/sbin/blog",
-            'author':"Alex Beal",
-            'date': datetime.datetime.now(),
+            'type': 'toc',
             'permalink': "index.html",
             'body': post_links,
             'cur_res': body

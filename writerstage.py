@@ -1,5 +1,6 @@
 import re
 import codecs
+import fileutils
 
 class WriterStage(object):
     single_item=True
@@ -14,7 +15,6 @@ class WriterStage(object):
         return post
 
     def _make_file_name(self, output_dir, post):
-        if output_dir[-1] != "/":
-            output_dir += "/"
+        output_dir = fileutils.add_slash_if_missing(output_dir)
         post_file_name = re.sub(r"[\s]", "-", post["permalink"])
         return output_dir + post_file_name
