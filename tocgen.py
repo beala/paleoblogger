@@ -4,6 +4,7 @@ class TOCGen(object):
     single_item=False
 
     def __init__(self, args_dict):
+        self.template_vals = args_dict
         pass
 
     def process(self, post_list):
@@ -12,7 +13,7 @@ class TOCGen(object):
             post_links += "<p>" + self._gen_link(post) + "\n"
         with open("body_head_toc") as header_file:
             header_str = header_file.read()
-            header_str = header_str
+            header_str = header_str % self.template_vals
             body = header_str + post_links
         with open("body_footer") as footer_file:
             body += footer_file.read()
@@ -20,7 +21,8 @@ class TOCGen(object):
             'type': 'toc',
             'permalink': "index.html",
             'body': post_links,
-            'cur_res': body
+            'cur_res': body,
+            'skip': False,
             })
 
         return post_list

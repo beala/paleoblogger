@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>%s</title>
+        <title>%(title)s</title>
         <link href='http://fonts.googleapis.com/css?family=Merriweather&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="css" href="styles.css">
         <link rel="stylesheet" type="css" href="tango.css">
@@ -10,8 +10,8 @@
     <body>
         <div id="title">
             <a href="index.html">Home</a>
-            <h1>%s</h1>
-            <b>By %s</b>
-            <br><b>%s</b>
+            <h1>%(title)s</h1>
+            <b>By %(author)s</b>
+            <br><b>%(date)s</b>
         </div>
         <div id="content">

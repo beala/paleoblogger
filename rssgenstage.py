@@ -26,7 +26,8 @@ class RSSGenStage(object):
                     "permalink": "rss.xml",
                     "date": datetime.datetime.now(),
                     "body": rss.to_xml(),
-                    "cur_res": rss.to_xml()
+                    "cur_res": rss.to_xml(),
+                    "skip": False,
                 })
         return post_list
 

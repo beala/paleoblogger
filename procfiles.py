@@ -4,22 +4,26 @@ import datetime
 import fileutils
 
 class ProcFiles(object):
-    def process(self, posts_dir):
+    def __init__(self, args_dict):
+        self.posts_dir = args_dict["posts_dir"]
+        self.output_dir = args_dict["output_dir"]
+
+    def process(self):
         """Given a directory of posts, return a dict representing those posts
            and a dict representing the blog's config.
            Return: (post_list, config_dict)
         """
-        posts_dir = fileutils.add_slash_if_missing(posts_dir)
+        self.posts_dir = fileutils.add_slash_if_missing(self.posts_dir)
         post_list = []
-        for post_filename in os.listdir(posts_dir):
+        for post_filename in os.listdir(self.posts_dir):
             # Process config file
             if post_filename == "_config":
-                config_dict = self._get_config_info(posts_dir+post_filename)
+                config_dict = self._get_config_info(self.posts_dir+post_filename)
                 continue
             # Process LaMark files
             if not post_filename.endswith(".lm"):
                 continue
-            post_info = self._get_post_info(posts_dir + post_filename)
+            post_info = self._get_post_info(self.posts_dir + post_filename)
             post_list.append(post_info)
         post_list.sort(key=lambda post_info: post_info['date'], reverse=True)
         return (post_list, config_dict)
@@ -71,6 +75,15 @@ class ProcFiles(object):
                     "%m-%d-%Y")
             # Post must end in .html
             post_info["permalink"] += ".html"
+            post_stat = os.stat(post_filename)
+            try:
+                output_stat = os.stat(self.output_dir + post_info["permalink"])
+                if post_stat.st_mtime > output_stat.st_mtime:
+                    post_info["skip"] = False
+                else:
+                    post_info["skip"] = True
+            except:
+                post_info["skip"] = False
             self._validate_post(post_info)
         return post_info
 

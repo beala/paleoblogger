@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>/usr/sbin/blog</title>
+        <title>%(title)s</title>
         <link href='http://fonts.googleapis.com/css?family=Merriweather&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="css" href="styles.css">
         <link rel="stylesheet" type="css" href="tango.css">
@@ -9,6 +9,6 @@
     </head>
     <body>
         <div id="title">
-            <h1>/usr/sbin/blog</h1>
+            <h1>%(title)s</h1>
         </div>
         <div id="toclinks">
