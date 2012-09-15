@@ -75,20 +75,29 @@ class ProcFiles(object):
                     "%m-%d-%Y")
             # Post must end in .html
             post_info["permalink"] += ".html"
+            # Check if the file needs to be regenerated. If the output dir has
+            # a file that's the same name as 'permalink', and that file is
+            # more recently modified than the '.lm' file, then set regen to
+            # False. Else True.
             post_stat = os.stat(post_filename)
             try:
                 output_stat = os.stat(self.output_dir + post_info["permalink"])
                 if post_stat.st_mtime > output_stat.st_mtime:
-                    post_info["skip"] = False
+                    post_info["regen"] = True
                 else:
-                    post_info["skip"] = True
-            except:
-                post_info["skip"] = False
+                    post_info["regen"] = False
+            except OSError:
+                # File could not be 'stat'd, so file probably doesn't exist yet,
+                # meaning it needs to be generated.
+                post_info["regen"] = True
             self._validate_post(post_info)
         return post_info
 
     def _validate_post(self, post):
+        optionals = ["desc"]
         for key in post:
+            if key in optionals:
+                continue
             if post[key] is None:
                 raise Exception("Post '%s' is missing front matter '%s'" %
                         (post['title'], key))

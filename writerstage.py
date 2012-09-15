@@ -10,7 +10,7 @@ class WriterStage(object):
         pass
 
     def process(self, post_list, post, post_num):
-        if post["skip"] == True:
+        if post["regen"] == False:
             return post
         with codecs.open(self._make_file_name(self.output_dir, post), 'w', encoding='utf-8') as post_file:
             post_file.write(post["cur_res"])

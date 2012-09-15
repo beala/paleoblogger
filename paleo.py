@@ -38,7 +38,7 @@ for stage in stages:
         post_list = stage_obj.process(post_list)
     else:
         for post_num in xrange(len(post_list)):
-            if post_list[post_num]["skip"]:
+            if post_list[post_num]["regen"] == False:
                 continue
             post_list[post_num] = stage_obj.process(
                     post_list,

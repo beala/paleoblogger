@@ -1,4 +1,6 @@
 from lamark import lamark
+import markdown
+
 class LamarkStage(object):
     single_item = True
 

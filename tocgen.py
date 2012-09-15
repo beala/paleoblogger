@@ -22,7 +22,7 @@ class TOCGen(object):
             'permalink': "index.html",
             'body': post_links,
             'cur_res': body,
-            'skip': False,
+            'regen': True,
             })
 
         return post_list
