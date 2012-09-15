@@ -7,6 +7,7 @@ import datetime
 import procfiles
 import lamarkstage
 import markdownstage
+import navbargen
 import htmlpagegen
 import tocgen
 import rssgenstage
@@ -22,6 +23,7 @@ args_dict = {
 stages = [
             lamarkstage.LamarkStage,
             markdownstage.MarkdownStage,
+            navbargen.NavbarGen,
             htmlpagegen.HTMLPageGen,
             tocgen.TOCGen,
             rssgenstage.RSSGenStage,

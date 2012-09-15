@@ -48,6 +48,13 @@ div .codehilite {
     font-size: 0.9em;
 }
 
+#navlist li{
+    display:inline;
+    list-style-type:none;
+    padding-right:20px;
+    font-weight: bold;
+}
+
 blockquote {
     font-style: italic;
 }

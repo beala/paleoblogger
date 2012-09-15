@@ -26,12 +26,15 @@ class RSSGenStage(object):
                 description=self.desc,
                 lastBuildDate=datetime.datetime.now(),
                 items=post_rss)
+        # to_xml returns a string encoded in iso-8859-1, so I decode it to
+        # prevent other parts of the program from choking on it.
         post_list.append(
                 {
                     "permalink": "rss.xml",
-                    "body": rss.to_xml(),
-                    "cur_res": rss.to_xml(),
+                    "body": rss.to_xml().decode('iso-8859-1'),
+                    "cur_res": rss.to_xml().decode('iso-8859-1'),
                     "regen": True,
+                    "type": "rss",
                 })
         return post_list
 
