@@ -10,7 +10,7 @@ class RSSGenStage(object):
     single_item = False
 
     def __init__(self, args_dict):
-        self.blog_title = args_dict["title"]
+        self.blog_title = args_dict["blog_title"]
         self.blog_url = args_dict["blog_base_url"]
         self.desc = args_dict["desc"]
         self.output_dir = args_dict["output_dir"]
@@ -32,7 +32,7 @@ class RSSGenStage(object):
                 {
                     "permalink": "rss.xml",
                     "body": rss.to_xml().decode('iso-8859-1'),
-                    "cur_res": rss.to_xml().decode('iso-8859-1'),
+                    "html_template": rss.to_xml().decode('iso-8859-1'),
                     "regen": True,
                     "type": "rss",
                 })

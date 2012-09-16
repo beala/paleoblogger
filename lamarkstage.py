@@ -8,6 +8,8 @@ class LamarkStage(object):
         self.output_dir = args_dict["output_dir"]
 
     def process(self, post_list, post, post_num):
-        body = post["cur_res"]
-        post["cur_res"] = lamark(body, self.output_dir, post["permalink"], 1500)
+        if post['type'] not in ['page', 'post']:
+            return post
+        body = post["html_body"]
+        post["html_body"] = lamark(body, self.output_dir, post["permalink"], 1500)
         return post

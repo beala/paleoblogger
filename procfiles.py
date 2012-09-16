@@ -26,6 +26,11 @@ class ProcFiles(object):
             post_info = self._get_post_info(self.posts_dir + post_filename)
             post_list.append(post_info)
         post_list.sort(key=lambda post_info: post_info['date'], reverse=True)
+        post_list.append({
+            'type': 'toc',
+            'permalink': 'index.html',
+            'regen': True,
+            })
         return (post_list, config_dict)
 
     def _get_post_info(self,post_filename):
@@ -39,7 +44,7 @@ class ProcFiles(object):
                 "permalink": None,  # Permanent title of the post "my-post.html"
                 "desc": None,       # Post description
                 "body": None,       # Body of the post in LaMark
-                "cur_res": None     # Output of each stage stored here
+                "html_body": None,
                 }
         # Use utf-8, otherwise the markdown module chokes on it.
         with codecs.open(post_filename, encoding='utf-8') as post_file:
@@ -68,7 +73,7 @@ class ProcFiles(object):
                 except StopIteration:
                     break
             post_info["body"] = body.strip()
-            post_info["cur_res"] = body.strip()
+            post_info["html_body"] = body.strip()
             # Convert date string to datetime obj.
             post_info["date"] = datetime.datetime.strptime(
                     post_info["date"],
@@ -106,7 +111,7 @@ class ProcFiles(object):
         config_info={
                 'home_url': None,
                 'blog_base_url': None,
-                'title': None,
+                'blog_title': None,
                 'desc': None,
                 }
         with codecs.open(config_filename, encoding='utf-8') as config_file:
@@ -123,9 +128,8 @@ class ProcFiles(object):
                 arg_val = line[colon_pos+1:].strip()
                 config_info[arg_name] = arg_val
         required_args = [
-                "home_url",
                 "blog_base_url",
-                "title",
+                "blog_title",
                 "desc",
                 ]
         for arg_name in required_args:

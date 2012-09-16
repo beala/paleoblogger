@@ -16,7 +16,7 @@ class WriterStage(object):
                 self._make_file_name(self.output_dir, post),
                 'w',
                 encoding='utf-8') as post_file:
-            post_file.write(post["cur_res"])
+            post_file.write(post["html_template"])
         return post
 
     def _make_file_name(self, output_dir, post):

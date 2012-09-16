@@ -8,22 +8,11 @@ class HTMLPageGen(object):
         pass
 
     def process(self, page_list, page, cur_page_num):
+        cur_template_vals = {}
+        cur_template_vals.update(self.template_vals)
+        cur_template_vals.update(page)
+        if "date" in cur_template_vals:
+            cur_template_vals["date"] = cur_template_vals["date"].strftime("%B %d, %Y")
         # Select a template depending on type.
-        if page["type"] == "post":
-            header = "body_head"
-        elif page["type"] == "page":
-            header = "body_head_page"
-        else:
-            raise Exception("Unknown page type: '%s'" % page["type"])
-        body = page["cur_res"]
-        with open(header) as header_file:
-            header_str = header_file.read()
-            # Copy dict to template vals so "date" can be modified.
-            self.template_vals.update(page)
-            self.template_vals["date"] = self.template_vals["date"].strftime("%B %d, %Y")
-            header_str = header_str % self.template_vals
-            body = header_str + body
-        with open("body_footer") as footer_file:
-            body += footer_file.read()
-        page["cur_res"] = body
+        page["html_template"] %= cur_template_vals
         return page

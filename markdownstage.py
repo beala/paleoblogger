@@ -7,8 +7,10 @@ class MarkdownStage(object):
         pass
 
     def process(self, post_list, post, post_num):
-        post["cur_res"] = markdown.markdown(
-                post["cur_res"],
+        if post['type'] not in ['page', 'post']:
+            return post
+        post["html_body"] = markdown.markdown(
+                post["html_body"],
                 ['fenced_code', 'codehilite'])
         # That was easy :-)
         return post

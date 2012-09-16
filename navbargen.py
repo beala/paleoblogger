@@ -5,7 +5,9 @@ class NavbarGen(object):
         self.global_args_dict = args_dict
 
     def process(self, post_list):
-        self.global_args_dict["page_links"] = self._gen_page_links(post_list)
+        page_links_html = self._gen_page_links(post_list)
+        for post in post_list:
+            post["page_links"] = page_links_html
         return post_list
 
     def _gen_page_links(self, post_list):

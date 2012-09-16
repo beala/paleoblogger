@@ -8,23 +8,11 @@ class TOCGen(object):
         self.template_vals = copy.copy(args_dict)
 
     def process(self, post_list):
-        post_links = self._gen_post_links(post_list)
-        #self.template_vals["page_links"] = self._gen_page_links(post_list)
-        # Combine links with header and footer to make page.
-        with open("body_head_toc") as header_file:
-            header_str = header_file.read()
-            header_str = header_str % self.template_vals
-            body = header_str + post_links
-        with open("body_footer") as footer_file:
-            body += footer_file.read()
-        post_list.append({
-            'type': 'toc',
-            'permalink': "index.html",
-            'body': post_links,
-            'cur_res': body,
-            'regen': True,
-            })
-
+        for post in post_list:
+            if post['type'] == 'toc':
+                toc = post
+                break
+        toc['toclinks'] = self._gen_post_links(post_list)
         return post_list
 
     def _gen_post_links(self,post_list):

@@ -5,6 +5,7 @@ import codecs
 import datetime
 
 import procfiles
+import readtemplatestage
 import lamarkstage
 import markdownstage
 import navbargen
@@ -21,11 +22,12 @@ args_dict = {
     }
 
 stages = [
+            readtemplatestage.ReadTemplateStage,
             lamarkstage.LamarkStage,
             markdownstage.MarkdownStage,
             navbargen.NavbarGen,
-            htmlpagegen.HTMLPageGen,
             tocgen.TOCGen,
+            htmlpagegen.HTMLPageGen,
             rssgenstage.RSSGenStage,
             writerstage.WriterStage
         ]
